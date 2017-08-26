@@ -35,19 +35,16 @@ class Settings extends ConfigFormBase {
       '#title' => $this->t('General settings'),
       '#open' => TRUE,
     ];
-    $form["general"]['indexation'] = array(
-      '#title' => $this->t('Индексация запрещена'),
-      '#description' => $this->t('Не забываем снимать при старте сайта!'),
-      '#type' => 'checkbox',
+    $form['general']['seria'] = [
+      '#title' => $this->t('Серия'),
+      '#default_value' => $config->get('seria'),
       '#maxlength' => 20,
-      '#required' => FALSE,
       '#size' => 15,
-      '#default_value' => $config->get('indexation'),
-    );
-
-    $form['general']['gtm_id'] = [
-      '#title' => $this->t('GTM-ID'),
-      '#default_value' => $config->get('gtm-id'),
+      '#type' => 'textfield',
+    ];
+    $form['general']['number'] = [
+      '#title' => $this->t('Номер'),
+      '#default_value' => $config->get('number'),
       '#maxlength' => 20,
       '#size' => 15,
       '#type' => 'textfield',
@@ -61,8 +58,8 @@ class Settings extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $config = $this->config('node_kassa.settings');
     $config
-      ->set('indexation', $form_state->getValue('indexation'))
-      ->set('gtm-id', $form_state->getValue('gtm_id'))
+      ->set('seria', $form_state->getValue('seria'))
+      ->set('number', $form_state->getValue('number'))
       ->save();
   }
 

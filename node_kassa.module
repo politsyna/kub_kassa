@@ -5,14 +5,30 @@
  * Node_kassa module.
  */
 
+use Drupal\Core\Entity\EntityInterface;
+
 /**
  * Example.
  */
-function _node_kassa_example() {
+function _node_kassa_example () {
   $config = \Drupal::config('node_kassa.settings');
   $indexation = $config->get('indexation');
   $gtm_id = $config->get('gtm-id');
 
   $new_gtm_id = 'jfkdjf';
   $config->set('gtm-id', $new_gtm_id)->save();
+}
+
+/**
+ * Node_kassa_entity_presave.
+ */
+function node_kassa_entity_presave(EntityInterface $node) {
+  if (method_exists($node, 'getType') && $node->getType() == 'kassa') {
+    if ($node->field_kassa_seria->value || $node->field_kassa_number->value) {
+      $seria = $node->field_kassa_seria->value;
+      $number = $node->field_kassa_number->value;
+    }
+    $title = $seria . " " . $number;
+    $node->title->setValue($title);
+  }
 }

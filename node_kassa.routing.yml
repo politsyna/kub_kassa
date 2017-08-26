@@ -1,0 +1,7 @@
+kassa.config:
+  path: '/admin/config/content/kassa'
+  defaults:
+    _form: '\Drupal\node_kassa\Form\Settings'
+    _title: 'Settings'
+  requirements:
+    _permission: 'administer content'

@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Node_kassa module.
+ */
+
+/**
+ * Example.
+ */
+function _node_kassa_example() {
+  $config = \Drupal::config('node_kassa.settings');
+  $indexation = $config->get('indexation');
+  $gtm_id = $config->get('gtm-id');
+
+  $new_gtm_id = 'jfkdjf';
+  $config->set('gtm-id', $new_gtm_id)->save();
+}

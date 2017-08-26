@@ -1,0 +1,4 @@
+node_kassa.config:
+  title: Settings Kassa (seria)
+  parent: synapse.page
+  route_name: kassa.config
